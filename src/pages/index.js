@@ -83,11 +83,6 @@ export default function Home() {
       <div className="h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
         <div className="lg:flex place-items-center gap-2 font-mono mt-4 mb-4">
           In a nutshell, CodeCleanse remove single line {"(//)"} and multiline {"/* */"} comments.
-          <a href="/about" target="_blank" rel="codeCleanse"
-            className="text-blue-500 underline pointer-events-auto font-mono font-bold"
-          >
-            More Info
-          </a>
         </div>
       </div>
 
