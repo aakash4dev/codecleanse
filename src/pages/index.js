@@ -1,9 +1,23 @@
 import { useState } from "react";
 import Image from "next/image";
+import Swal from 'sweetalert2'
 
 export default function Home() {
 
   const [value, setValue] = useState("");
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+
 
   // remove comments
   const RemoveComment = () => {
@@ -11,7 +25,11 @@ export default function Home() {
     console.log(value);
     let newCode = code.replace(/(\/\*([\s\S]*?)\*\/)|(\/\/(.*)$)/gm, "");
     setValue(newCode);
-    console.log(value);
+
+    Toast.fire({
+      icon: "success",
+      title: "Comments removed"
+    });
   };
 
 
@@ -40,11 +58,17 @@ export default function Home() {
 
 
 
-        <button className="relative px-6 py-3 font-bold text-black group" onClick={RemoveComment}>
+        {/* <button className="relative px-6 py-3 font-bold text-black group">
           <div className="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-red-300 group-hover:translate-x-0 group-hover:translate-y-0"></div>
           <div className="absolute inset-0 w-full h-full border-4 border-black"></div>
           <div className="relative">Remove Comment</div>
-        </button>
+        </button> */}
+        <div className="flex justify-center">
+        <div  onClick={RemoveComment} className="cursor-pointer font-bold inline-block px-12 py-3 text-sm font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring">
+          Remove Comment
+        </div>
+        </div>
+
       </div>
 
 
